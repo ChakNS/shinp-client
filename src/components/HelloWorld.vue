@@ -7,7 +7,7 @@ const count = ref(0)
 </script>
 
 <template>
-  <h1>{{ msg }}</h1>
+  <h1 class="test">{{ msg }}</h1>
 
   <p>
     Recommended IDE setup:
@@ -33,9 +33,12 @@ const count = ref(0)
   </p>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 a {
   color: #42b983;
+}
+.test {
+  color: $test-color;
 }
 
 label {

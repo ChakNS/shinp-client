@@ -11,6 +11,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@types/node": "^17.0.19",
     "vue": "^3.2.25"
   },
   "devDependencies": {
@@ -25,6 +26,8 @@
     "lint-staged": ">=10",
     "mrm": "^3.0.10",
     "prettier": "^2.5.1",
+    "sass": "^1.49.8",
+    "sass-loader": "^12.6.0",
     "typescript": "^4.5.4",
     "vite": "^2.8.0",
     "vue-tsc": "^0.29.8"
