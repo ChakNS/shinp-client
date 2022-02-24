@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import testApi from '@/service/api/testApi'
+import { useAgeStore } from '@/store/age'
 import { ref } from 'vue'
 
 defineProps<{ msg: string }>()
 
 const count = ref(0)
+const ageStore = useAgeStore()
+console.log(ageStore.chakAge)
 </script>
 
 <template>
