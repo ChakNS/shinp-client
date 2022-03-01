@@ -5,6 +5,6 @@ interface HttpResponse<T> {
 }
 
 export interface AxiosHttp {
-  $get<T>(url: string, params?: Object): Promise<HttpResponse<T>>
-  $post<T>(url: string, params?: Object): Promise<HttpResponse<T>>
+  $get<T>(url: string, params?: unknown): Promise<HttpResponse<T>>
+  $post<T>(url: string, params?: unknown): Promise<HttpResponse<T>>
 }
