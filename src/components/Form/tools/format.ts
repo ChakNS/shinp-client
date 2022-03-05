@@ -3,17 +3,25 @@
  **/
 
 import { nextTick } from 'vue'
-import { FormConfig, FormChild } from '../types'
+import { FormConfig, FormChild, FormatConfig } from '../types'
 
 // 根据行组织表单结构
-export const groupingFormItem = (config: Array<FormConfig>) => {
+export const groupingFormItem = (config: Array<FormConfig>): FormatConfig[] => {
   try {
-    return config.map(() => {
-      return []
+    return config.map(column => {
+      const rows: Array<{ cols: Array<FormChild> }> = []
+      column.children.forEach(item => {
+        if (rows[item.row]) {
+          rows[item.row].cols.push(item)
+        } else {
+          rows[item.row] = { cols: [item] }
+        }
+      })
+      return { ...column, rows: rows.filter(Boolean) }
     })
   } catch (error) {
     console.log(error)
-    return []
+    return config.map(column => ({ ...column, rows: [] }))
   }
 }
 

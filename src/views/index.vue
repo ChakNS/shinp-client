@@ -10,7 +10,11 @@ import ShinpForm from '@/components/Form'
 
 const fromConfig = [
   {
-    title: '123',
+    title: '测试1',
+    children: [],
+  },
+  {
+    title: '测试2',
     children: [],
   },
 ]
