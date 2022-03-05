@@ -20,6 +20,7 @@ module.exports = {
     sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
+      tsx: true,
     },
   },
   // eslint-plugin-vue @typescript-eslint/eslint-plugin eslint-plugin-prettier的缩写
@@ -38,7 +39,9 @@ module.exports = {
         },
       },
     ],
+    'vue/multi-word-component-names': 0,
     'max-len': ['error', { code: 120 }],
+    'prettier/prettier': ['error', { arrowParens: 'avoid' }],
   },
   globals: {
     defineProps: 'readonly',

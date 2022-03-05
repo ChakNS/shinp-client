@@ -6,11 +6,12 @@
 </template>
 
 <script setup lang="ts">
-import ShinpForm from '@/components/Form/index.vue'
+import ShinpForm from '@/components/Form'
 
 const fromConfig = [
   {
     title: '123',
+    children: [],
   },
 ]
 </script>
