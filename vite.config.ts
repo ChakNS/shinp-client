@@ -13,7 +13,6 @@ const resolve = (path: string) => join(__dirname, path)
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), vueJsx()],
   base: './',
   server: {
     host: '0.0.0.0',
@@ -32,6 +31,7 @@ export default defineConfig({
   },
   plugins: [
     vue(),
+    vueJsx(),
     AutoImport({
       resolvers: [ElementPlusResolver()],
     }),

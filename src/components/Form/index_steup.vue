@@ -1,9 +1,10 @@
-<template>表单</template>
+<template><ShinpForm :config="groupedConfig" :values="buildedValues"></ShinpForm></template>
 
 <script lang="ts" setup>
 import { computed, watch, reactive } from 'vue'
 import { FormConfig } from './types'
 import { groupingFormItem, groupingValues } from './tools/format'
+import ShinpForm from './form'
 
 const props = defineProps<{ config: Array<FormConfig> }>()
 
@@ -15,8 +16,7 @@ console.log(groupedConfig.value)
 
 watch(
   () => props.config,
-  newVal =>
-    (buildedValues = Object.assign(groupingValues(newVal), buildedValues)),
+  newVal => (buildedValues = reactive(Object.assign(groupingValues(newVal), buildedValues))),
   {
     immediate: true,
     deep: true,

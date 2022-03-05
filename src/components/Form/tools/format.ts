@@ -26,10 +26,7 @@ export const groupingFormItem = (config: Array<FormConfig>): FormatConfig[] => {
 }
 
 const handleMap: {
-  [propName: string]: (
-    item: FormChild,
-    values: { [propName: string]: unknown }
-  ) => void
+  [propName: string]: (item: FormChild, values: { [propName: string]: unknown }) => void
 } = {
   formImage: (item, formValues) => {
     nextTick(() => {

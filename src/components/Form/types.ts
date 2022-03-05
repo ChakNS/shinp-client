@@ -3,7 +3,22 @@ export interface FormChild {
   type: string
   key: string
   row: number
-  defaultValue: unknown
+  formItemAttrs: {
+    label: string
+    [propName: string]: any
+  }
+  formAttrs?: unknown
+  rowAttrs?: unknown
+  colAttrs?: unknown
+  typeAttrs?: unknown
+  defaultValue?: unknown
+  on?: {
+    [propName: string]: Function
+  }
+  slots?: {
+    [propName: string]: unknown
+  }
+  render?: Function
 }
 
 export interface FormConfig {
@@ -11,7 +26,7 @@ export interface FormConfig {
   children: Array<FormChild>
   formAttrs?: unknown
   rowAttrs?: unknown
-  typesAttrs?: unknown
+  typeAttrs?: unknown
   unfold?: boolean
 }
 

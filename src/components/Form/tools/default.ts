@@ -9,3 +9,9 @@ export const defaultFormAttrs = Object.freeze({
   labelWidth: '80px',
 })
 export const defaultRowAttrs = Object.freeze({})
+
+export const defaultFormItemAttrs = Object.freeze({
+  required: false,
+})
+
+export const defaultColAttrs = Object.freeze({})
