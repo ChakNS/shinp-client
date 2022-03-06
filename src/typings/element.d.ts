@@ -14,6 +14,9 @@ type JsxComponentCustomProps = {
   vShow?: boolean
   vHtml?: JsxNode
   vSlots?: SlotDirective
+  on?: {
+    [name: string]: Function
+  }
 } & Omit<HTMLAttributes, 'innerHTML'> & {
     innerHTML?: JsxNode
   }

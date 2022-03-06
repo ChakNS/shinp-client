@@ -1,11 +1,13 @@
 <template>
   <div>
     首页
-    <ShinpForm :config="fromConfig" />
+    <ShinpForm ref="shinpForm" :config="fromConfig" />
+    <el-button @click="getForm">获取</el-button>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import ShinpForm from '@/components/Form/form'
 
 const fromConfig = [
@@ -35,4 +37,10 @@ const fromConfig = [
     children: [],
   },
 ]
+
+const shinpForm = ref(ShinpForm)
+
+const getForm = () => {
+  console.log(shinpForm.value.getValues().taskNo)
+}
 </script>

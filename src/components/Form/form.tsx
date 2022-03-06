@@ -5,6 +5,7 @@ import { defaultFormAttrs, defaultRowAttrs } from './tools/default'
 import _cloneDeep from 'lodash/cloneDeep'
 import { ElForm, ElRow } from 'element-plus'
 import { formItem } from './tools/mixin'
+import { useExpose } from '@/use/use-expose'
 
 export default defineComponent({
   props: {
@@ -18,12 +19,13 @@ export default defineComponent({
     const groupedConfig = computed(() => groupingFormItem(props.config))
     watch(
       () => props.config,
-      newVal => {
-        buildedValues = reactive(Object.assign(groupingValues(newVal), buildedValues))
-        console.log('uuuuu')
-      },
+      newVal => (buildedValues = reactive(Object.assign(groupingValues(newVal), buildedValues))),
       { immediate: true, deep: true }
     )
+
+    const getValues = () => buildedValues
+
+    useExpose({ getValues })
 
     return () => (
       <>

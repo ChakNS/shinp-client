@@ -1,6 +1,7 @@
 /**
  * @description 表单默认属性
  **/
+import { FormChild } from '../types'
 
 export const defaultFormAttrs = Object.freeze({
   inline: true,
@@ -15,3 +16,12 @@ export const defaultFormItemAttrs = Object.freeze({
 })
 
 export const defaultColAttrs = Object.freeze({})
+
+export const defaultTypeAttrs = Object.freeze({
+  size: 'small',
+  clearable: true,
+})
+
+export const defaultInputAttrs = (col: FormChild) => ({
+  placeholder: `请输入${col.formItemAttrs.label || ''}`,
+})
