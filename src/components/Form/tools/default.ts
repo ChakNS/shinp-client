@@ -6,8 +6,6 @@ import { FormChild } from '../types'
 export const defaultFormAttrs = Object.freeze({
   inline: true,
   size: 'small',
-  labelPosition: 'right',
-  labelWidth: '80px',
 })
 export const defaultRowAttrs = Object.freeze({})
 

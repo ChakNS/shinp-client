@@ -22,7 +22,7 @@ interface formItemType {
   validator?: unknown
 }
 
-function processAttrs(formItemAttrs: formItemType, col: FormChild) {
+function processAttrs(formItemAttrs: formItemType, col: FormChild): Readonly<{}> {
   const result = _cloneDeep(formItemAttrs)
   result.required && required(result, col)
   return result
@@ -43,8 +43,8 @@ export const formItem = (row: { cols: Array<FormChild> }, values: { [propName: s
     const jointColAttrs = Object.assign(_cloneDeep(defaultColAttrs), colAttrs)
     const jointFormItemAttrs = processAttrs(Object.assign(_cloneDeep(defaultFormItemAttrs), formItemAttrs), col)
     return (
-      <ElCol>
-        <ElFormItem {...{ attrs: jointFormItemAttrs }} style="width: 100%;">
+      <ElCol {...jointColAttrs}>
+        <ElFormItem {...jointFormItemAttrs} style="width: 100%;">
           {col.render ? col.render(values) : generateComp(col, values)}
         </ElFormItem>
       </ElCol>

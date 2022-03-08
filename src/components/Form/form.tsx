@@ -6,8 +6,13 @@ import _cloneDeep from 'lodash/cloneDeep'
 import { ElForm, ElRow } from 'element-plus'
 import { formItem } from './tools/mixin'
 import { useExpose } from '@/use/use-expose'
+import classes from './index.module.scss'
+import { createNamespace } from '@/utils'
+
+const [name, bem] = createNamespace('form')
 
 export default defineComponent({
+  name,
   props: {
     config: {
       type: Object as PropType<Array<FormConfig>>,
@@ -33,14 +38,13 @@ export default defineComponent({
           const { title, formAttrs, rowAttrs } = column
           const jointFormAttrs = Object.assign(_cloneDeep(defaultFormAttrs), formAttrs)
           const jointRowAttrs = Object.assign(_cloneDeep(defaultRowAttrs), rowAttrs)
-          const unfold = typeof column.unfold === 'boolean' ? column.unfold : true
 
           return (
             <>
-              {title && <div>{title}</div>}
+              {title && <div class={bem('column-title')}>{title}</div>}
               <ElForm {...{ attrs: { ...jointFormAttrs, model: buildedValues } }} ref="form">
                 {column.rows.map(row => (
-                  <ElRow>{formItem(row, buildedValues)}</ElRow>
+                  <ElRow {...jointRowAttrs}>{formItem(row, buildedValues)}</ElRow>
                 ))}
               </ElForm>
             </>

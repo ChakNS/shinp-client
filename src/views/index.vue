@@ -24,7 +24,7 @@ const fromConfig = [
           required: true,
         },
         colAttrs: {
-          span: 4,
+          span: 12,
         },
         typeAttrs: {
           disabled: true,

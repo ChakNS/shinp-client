@@ -1,0 +1,46 @@
+$form-prefix-cls: 'shinp-form';
+
+.#{$form-prefix-cls} {
+  &__column-title {
+    height: 30px;
+    padding: 0 16px 0 18px;
+    line-height: 32px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #102058;
+    background-color: #F1F8FE;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    &::before {
+      position: absolute;
+      content: '';
+      left: 8px;
+      display: inline-block;
+      width: 3px;
+      height: 16px;
+      background: #3D5BC4;
+    }
+  
+    &-text {
+      padding: 0 8px;
+    }
+  
+    &-unfold {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      color: #333;
+      &:hover {
+        color: rgba(51, 51, 51, 0.598);
+      }
+      &-text {
+        font-size: 12px;
+        margin-right: 5px;
+      }
+    }
+  }
+}
