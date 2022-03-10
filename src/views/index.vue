@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import ShinpForm from '@/components/Form/form'
+import ShinpForm from '@/components/Form'
 
 const fromConfig = [
   {
