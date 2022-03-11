@@ -1,27 +1,29 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-'use strict'
 const uppercamelcase = require('uppercamelcase')
 const path = require('path')
-const fs = require('fs')
-const fileSave = require('file-save')
-
+const { writeFile, readFile } = require('fs').promises
 const componentsJsonFile = require('../src/components/component.json')
+const { prompt: query } = require('enquirer')
 
-const args = process.argv.slice(2)
-const [componentEN, componentCN = componentEN] = args
+console.log()
+process.on('exit', () => console.log())
 
-if (!componentEN) {
-  console.error('[组件名]必填 - Please enter new component name')
-  process.exit(1)
-}
+const main = async () => {
+  const args = await argsQuery()
+  const { componentEN, componentCN } = args
 
-const ComponentName = uppercamelcase(componentEN)
-const componentPath = path.resolve(__dirname, '../src/components', ComponentName)
+  if (!componentEN) {
+    console.error('[组件名]必填 - Please enter component name')
+    process.exit(1)
+  }
 
-const Files = [
-  {
-    fileName: 'index.tsx',
-    content: `// ${ComponentName} ${componentCN}
+  const ComponentName = uppercamelcase(componentEN)
+  const componentPath = path.resolve(__dirname, '../src/components', ComponentName)
+
+  const Files = [
+    {
+      fileName: 'index.tsx',
+      content: `// ${ComponentName} ${componentCN}
 import { defineComponent } from 'vue'
 import {} from './types'
 import { createNamespace } from '@/utils'
@@ -34,49 +36,75 @@ export default defineComponent({
     return () => {
       return (
         <>
-        
+          
         </>
       )
     }
   }
 })`,
-  },
-  {
-    fileName: 'types.ts',
-    content: `// 类型定义
+    },
+    {
+      fileName: 'types.ts',
+      content: `// 类型定义
 export {}`,
-  },
-  {
-    fileName: 'tools/index.ts',
-    content: '// 工具函数',
-  },
-  {
-    fileName: 'style/index.ts',
-    content: `import './index.scss'`,
-  },
-  {
-    fileName: 'style/index.scss',
-    content: `$${componentEN}-prefix-cls: 'shinp-${componentEN}';
+    },
+    {
+      fileName: 'tools/index.ts',
+      content: '// 工具函数',
+    },
+    {
+      fileName: 'style/index.ts',
+      content: `import './index.scss'`,
+    },
+    {
+      fileName: 'style/index.scss',
+      content: `$${componentEN}-prefix-cls: 'shinp-${componentEN}';
 
 .#{$${componentEN}-prefix-cls} {
 
 }`,
-  },
-]
+    },
+  ]
 
-if (componentsJsonFile[ComponentName]) {
-  console.error(`组件${ComponentName}已存在`)
-  process.exit(1)
+  if (componentsJsonFile[ComponentName]) {
+    console.error(`组件${ComponentName}已存在`)
+    process.exit(1)
+  }
+  componentsJsonFile[ComponentName] = `./${ComponentName}`
+  await writeFile(
+    path.join(__dirname, '../src/components/component.json'),
+    JSON.stringify(componentsJsonFile, null, '  ') + '\n'
+  )
+
+  const rootStylePath = path.resolve(__dirname, '../src/components/style.ts')
+  const styleImportText = `${await readFile(rootStylePath)}import './${ComponentName}/style'`
+  await writeFile(rootStylePath, styleImportText + '\n')
+
+  for await (const file of Files) writeFile(path.join(componentPath, file.fileName), file.content + '\n')
+
+  console.log('DONE!')
 }
-componentsJsonFile[ComponentName] = `./${ComponentName}`
-fileSave(path.join(__dirname, '../src/components/component.json'))
-  .write(JSON.stringify(componentsJsonFile, null, '  '), 'utf8')
-  .end('\n')
 
-const rootStylePath = path.resolve(__dirname, '../src/components/style.ts')
-const styleImportText = `${fs.readFileSync(rootStylePath)}import './${ComponentName}/style'`
-fileSave(rootStylePath).write(styleImportText, 'utf8').end('\n')
+async function argsQuery() {
+  const args = {}
+  args.componentEN = (
+    await query({
+      type: 'input',
+      name: 'componentname',
+      message: 'Input component name',
+    })
+  ).componentname.trim()
 
-Files.forEach(file => fileSave(path.join(componentPath, file.fileName)).write(file.content, 'utf8').end('\n'))
+  args.componentCN =
+    (
+      await query({
+        type: 'input',
+        name: 'componentname',
+        message: 'Input component chinese name',
+      })
+    ).componentname.trim() || args.componentEN
 
-console.log('DONE!')
+  return args
+}
+
+main()
