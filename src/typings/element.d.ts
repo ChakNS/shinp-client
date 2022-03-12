@@ -8,12 +8,6 @@ export interface SlotDirective {
 }
 
 type JsxComponentCustomProps = {
-  vModel?: unknown
-  vModels?: unknown[]
-  vCustom?: unknown[]
-  vShow?: boolean
-  vHtml?: JsxNode
-  vSlots?: SlotDirective
   on?: {
     [name: string]: Function
   }

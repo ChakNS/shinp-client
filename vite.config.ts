@@ -17,11 +17,21 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     port: 3000,
-    open: true,
+    open: false,
     https: false,
     proxy: {},
   },
   build: {
+    target: 'modules',
+    assetsDir: 'assets',
+    assetsInlineLimit: 4096,
+    sourcemap: false,
+    manifest: false,
+    minify: 'terser',
+    write: true,
+    emptyOutDir: true,
+    brotliSize: true,
+    chunkSizeWarningLimit: 500,
     terserOptions: {
       compress: {
         drop_console: true,
