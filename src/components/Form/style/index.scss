@@ -8,12 +8,12 @@ $form-prefix-cls: 'shinp-form';
     font-size: 14px;
     font-weight: bold;
     color: #102058;
-    background-color: #F1F8FE;
+    background-color: #f1f8fe;
     position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
-  
+
     &::before {
       position: absolute;
       content: '';
@@ -21,13 +21,13 @@ $form-prefix-cls: 'shinp-form';
       display: inline-block;
       width: 3px;
       height: 16px;
-      background: #3D5BC4;
+      background: #3d5bc4;
     }
-  
+
     &-text {
       padding: 0 8px;
     }
-  
+
     &-unfold {
       display: flex;
       justify-content: space-between;
