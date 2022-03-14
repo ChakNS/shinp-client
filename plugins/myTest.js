@@ -54,7 +54,6 @@ export default options => {
     async transform(code, id) {
       // todo 外部css文件
       if (isTargetFile(id)) {
-        console.log(id)
         if (cache.has(id)) {
           return { code: cache.get(id), map: null }
         }
