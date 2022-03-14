@@ -56,7 +56,16 @@ export default function extractColor(matchColorRegs) {
         if (!stack.length) {
           content = contanter
           contanter = ''
-          content && result.push({ selector, content })
+          if (content) {
+            const exist = result.find(item => item.selector === selector)
+            if (exist) {
+              if (exist.content !== exist.content) {
+                exist.content += content
+              }
+            } else {
+              result.push({ selector, content })
+            }
+          }
         } else {
           contanter += code[i]
         }

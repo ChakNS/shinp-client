@@ -46,7 +46,7 @@ export default defineConfig({
     myTest([
       {
         extract: ['#102058'],
-        transform: code => code.replace('#102058', 'blue'),
+        transform: code => code.replace(new RegExp('#102058', 'ig'), 'blue'),
         output: 'myThemes/test1.css',
         injectTo: {
           tag: 'script',
