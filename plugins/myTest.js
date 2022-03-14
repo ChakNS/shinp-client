@@ -43,7 +43,7 @@ export default options => {
   }))
   const extractCode = code => {
     outputFiles.forEach(file => {
-      file.code += `${file.transform(extractColor(file.extractRegs)(code).join('\n'))}\n`
+      file.code += `${file.transform(extractColor(file.extractRegs)(code).join(''))}`
     })
   }
   return {
