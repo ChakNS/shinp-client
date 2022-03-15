@@ -2,7 +2,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
-import Color from './plugins/vite-plugin-color'
 import { join } from 'path'
 
 // element-plus 按需引入配置
@@ -43,33 +42,6 @@ export default defineConfig({
   plugins: [
     vue(),
     vueJsx(),
-    Color([
-      {
-        extract: ['#102058'],
-        transform: code => code.replace(new RegExp('#102058', 'ig'), 'blue'),
-        output: 'myThemes/test1.css',
-        injectTo: {
-          tag: 'script',
-          attrs: {
-            type: 'text/javascript',
-          },
-          children: `
-            window.onload = function () {
-              var link = document.createElement('link')
-              link.rel = 'stylesheet'
-              link.href = './myThemes/test1.css'
-              document.head.appendChild(link)
-            }
-          `,
-          injectTo: 'head',
-        },
-      },
-      {
-        extract: ['#409EFF'],
-        transform: code => code.replace(new RegExp('#409EFF', 'ig'), 'red !important'),
-        output: 'myThemes/test2.css',
-      },
-    ]),
     AutoImport({
       resolvers: [ElementPlusResolver()],
     }),
