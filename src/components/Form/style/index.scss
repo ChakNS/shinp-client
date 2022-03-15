@@ -43,14 +43,24 @@ $form-prefix-cls: 'shinp-form';
       }
     }
   }
+}
 
-  @keyframes slidein {
-    from {
-      color: #102058;
-    }
+@keyframes slidein {
+  from {
+    color: #102058;
+  }
 
-    to {
-      color: blue;
-    }
+  to {
+    color: blue;
+  }
+}
+
+@keyframes slidein {
+  from {
+    color: #102058;
+  }
+
+  to {
+    color: blue;
   }
 }

@@ -2,7 +2,7 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
-import myTest from './plugins/myTest.js'
+import Color from './plugins/vite-plugin-color'
 import { join } from 'path'
 
 // element-plus 按需引入配置
@@ -43,7 +43,7 @@ export default defineConfig({
   plugins: [
     vue(),
     vueJsx(),
-    myTest([
+    Color([
       {
         extract: ['#102058'],
         transform: code => code.replace(new RegExp('#102058', 'ig'), 'blue'),

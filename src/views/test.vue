@@ -3,7 +3,3 @@
 </template>
 
 <script setup lang="ts"></script>
-
-<style lang="scss">
-@import '@/components/Form/style/index.scss';
-</style>
